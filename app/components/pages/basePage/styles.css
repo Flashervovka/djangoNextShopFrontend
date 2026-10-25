@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+/* Родительская сетка */
+.main_layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: calc(var(--spacing) * 2); /* gap-x-2 */
+    row-gap: calc(var(--spacing) * 4); /* gap-y-4 */
+    padding: calc(var(--spacing) * 4); /* p-4 */
+    grid-template-areas:
+    'header header header'
+    'article article sidebar'
+    'footer footer footer';
+}
+
+/* Элементы сетки */
+.layout_header {
+    @apply rounded bg-green-700 p-4 text-white;
+    grid-area: header;
+}
+
+.layout_article {
+    @apply rounded bg-gray-500 p-4 text-white;
+    grid-area: article;
+}
+
+.layout_sidebar {
+    @apply rounded bg-red-700 p-4 text-white;
+    grid-area: sidebar;
+}
+
+.layout_footer {
+    @apply rounded bg-blue-700 p-4 text-white;
+    grid-area: footer;
+}
