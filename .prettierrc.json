@@ -9,15 +9,5 @@
   "jsxSingleQuote": false,
   "bracketSameLine": false,
   "semi": true,
-  "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
-  "importOrder": [
-    "^react$",
-    "^next",
-    "<THIRD_PARTY_MODULES>",
-    "^@/components/(.*)$",
-    "^@/utils/(.*)$",
-    "^[./]"
-  ],
-  "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true
+  "plugins": ["prettier-plugin-tailwindcss"]
 }

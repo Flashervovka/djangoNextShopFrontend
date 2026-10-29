@@ -1,19 +1,22 @@
 @import "tailwindcss";
 
-/* Родительская сетка */
 .main_layout {
     display: grid;
+    /* Ключевое изменение: средний ряд занимает всё свободное место */
+    grid-template-rows: auto 1fr auto;
     grid-template-columns: repeat(3, 1fr);
-    column-gap: calc(var(--spacing) * 2); /* gap-x-2 */
-    row-gap: calc(var(--spacing) * 4); /* gap-y-4 */
-    padding: calc(var(--spacing) * 4); /* p-4 */
+    column-gap: calc(var(--spacing) * 2);
+    row-gap: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 4);
+    min-height: 100vh; /* Гарантирует, что сетка занимает минимум высоту экрана */
+    box-sizing: border-box;
+
     grid-template-areas:
-    'header header header'
-    'article article sidebar'
-    'footer footer footer';
+    'sidebar header header'
+    'sidebar article article'
+    'sidebar footer footer';
 }
 
-/* Элементы сетки */
 .layout_header {
     @apply rounded bg-green-700 p-4 text-white;
     grid-area: header;
@@ -26,10 +29,12 @@
 
 .layout_sidebar {
     @apply rounded bg-red-700 p-4 text-white;
+    /* Раскомментировал для наглядности */
     grid-area: sidebar;
 }
 
 .layout_footer {
     @apply rounded bg-blue-700 p-4 text-white;
     grid-area: footer;
+    /* Не нужно никаких position: fixed/absolute — Grid сам всё разместит */
 }
