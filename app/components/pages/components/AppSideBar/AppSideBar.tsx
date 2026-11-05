@@ -1,36 +1,37 @@
-'use client';
+//'use client';
 
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
 } from '@/components/ui/sidebar';
+import { ICategory } from '@/models';
 
-const projects = [
-  { name: 'sushi', url: '#' },
-  { name: 'sushi1', url: '#' },
-  { name: 'sushi2', url: '#' },
-];
+import { CustomSidebarMenuItem } from './CustomSidebarMenuItem';
 
-export const AppSidebar = () => {
+interface IProps {
+  data: ICategory[];
+}
+
+export const AppSidebar = ({ data }: IProps) => {
   return (
     <Sidebar variant="inset">
-      <SidebarHeader />
+      <SidebarHeader className="h-15">
+        <div className="h-[10px] pt-2">будет логотип</div>
+      </SidebarHeader>
       <SidebarContent>
-        <SidebarMenu>
-          {projects.map((project) => (
-            <SidebarMenuItem key={project.name}>
-              <SidebarMenuButton render={<a href={project.url}>{project.name}</a>}>
-                <span>{project.name}</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
-        </SidebarMenu>
+        <ScrollArea className="h-[90vh]">
+          <SidebarMenu>
+            {data.map((item) => (
+              <CustomSidebarMenuItem key={item.id} data={item} />
+            ))}
+          </SidebarMenu>
+        </ScrollArea>
       </SidebarContent>
+
       <SidebarFooter />
     </Sidebar>
   );

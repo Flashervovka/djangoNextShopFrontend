@@ -1,4 +1,6 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
+
+const DJANGO_URL = process.env.DJANGO_URL ?? 'http://localhost:8000';
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -6,11 +8,19 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   turbopack: {
     rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
+      '*.css': {
+        loaders: ['@tailwindcss/turbopack'],
+        as: '*.css',
       },
     },
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/media/:path*',
+        destination: `${DJANGO_URL}/media/:path*`,
+      },
+    ];
   },
 };
 
